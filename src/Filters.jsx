@@ -1,6 +1,11 @@
-// The search bar and size filter above the list.
+// The search bar, size filter, and price range above the list.
 // App passes in the current values and the functions to call when they change.
-const Filters = ({ searchInput, onSearchChange, sizeFilter, onSizeChange }) => {
+const Filters = ({
+  searchInput, onSearchChange,
+  sizeFilter, onSizeChange,
+  minPrice, onMinPriceChange,
+  maxPrice, onMaxPriceChange,
+}) => {
   return (
     <div className="filters">
       <input
@@ -21,6 +26,30 @@ const Filters = ({ searchInput, onSearchChange, sizeFilter, onSizeChange }) => {
         <option value="mid">Mid cap ($1B to $10B)</option>
         <option value="small">Small cap (under $1B)</option>
       </select>
+
+      {/* Only show coins priced between these two numbers (either one can be left empty) */}
+      <div className="price-range">
+        <label htmlFor="min-price">Price $</label>
+        <input
+          id="min-price"
+          type="number"
+          min="0"
+          step="any"
+          value={minPrice}
+          placeholder="Min"
+          onChange={(event) => onMinPriceChange(event.target.value)}
+        />
+        <label htmlFor="max-price">to $</label>
+        <input
+          id="max-price"
+          type="number"
+          min="0"
+          step="any"
+          value={maxPrice}
+          placeholder="Max"
+          onChange={(event) => onMaxPriceChange(event.target.value)}
+        />
+      </div>
     </div>
   );
 };

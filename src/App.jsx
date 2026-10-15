@@ -23,6 +23,10 @@ function App() {
   // Which size of coin to show: "all", "large", "mid", or "small"
   const [sizeFilter, setSizeFilter] = useState("all");
 
+  // The lowest and highest price to show, as typed ("" = no limit)
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
   // Get the coins once, when the page first loads
   useEffect(() => {
     const fetchCoins = async () => {
@@ -49,11 +53,14 @@ function App() {
   // Only show coins whose name or symbol includes the search text
   // (lowercase so "btc", "BTC", and "Bitcoin" all work)
   // and that are the size picked in the filter
+  // and whose price is between the min and max (if they were typed in)
   const search = searchInput.trim().toLowerCase();
   const shownCoins = coins.filter((coin) => {
     const matchesSearch = coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search);
     const matchesSize = sizeFilter === "all" || getCoinSize(coin.market_cap) === sizeFilter;
-    return matchesSearch && matchesSize;
+    const aboveMin = minPrice === "" || coin.current_price >= Number(minPrice);
+    const belowMax = maxPrice === "" || coin.current_price <= Number(maxPrice);
+    return matchesSearch && matchesSize && aboveMin && belowMax;
   });
 
   return (
@@ -74,6 +81,10 @@ function App() {
             onSearchChange={setSearchInput}
             sizeFilter={sizeFilter}
             onSizeChange={setSizeFilter}
+            minPrice={minPrice}
+            onMinPriceChange={setMinPrice}
+            maxPrice={maxPrice}
+            onMaxPriceChange={setMaxPrice}
           />
 
           <p className="results-count">Showing {shownCoins.length} of {coins.length} coins</p>
@@ -81,7 +92,7 @@ function App() {
           {shownCoins.length > 0 ? (
             <CoinList coins={shownCoins} />
           ) : (
-            <p className="message">No coins match your search and filter.</p>
+            <p className="message">No coins match your search and filters.</p>
           )}
         </>
       )}

@@ -113,6 +113,29 @@ body {
   cursor: pointer;
 }
 
+/* The min and max price boxes */
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+}
+
+.price-range input {
+  width: 100px;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  background-color: #1e293b;
+  color: white;
+  outline: none;
+}
+
+.price-range input:focus {
+  border-color: #38bdf8;
+}
+
 /* "Showing 12 of 100 coins" */
 .results-count {
   color: #94a3b8;
