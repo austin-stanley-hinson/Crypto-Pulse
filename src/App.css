@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #0f172a;
+}
+
+.App {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: normal;
+  color: #cbd5e1;
+}
+
+.message {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+.message.error {
+  color: #f87171;
+  font-weight: bold;
+}
+
+/* The list of coins, one per row */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+.coin-list {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.coin-list th {
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 14px;
+  color: #94a3b8;
+  background-color: #334155;
+}
+
+.coin-list td {
+  padding: 12px;
+  border-top: 1px solid #334155;
+}
+
+.coin-list tbody tr:hover {
+  background-color: #273449;
+}
+
+.rank {
+  color: #94a3b8;
+}
+
+.coin-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.coin-name img {
+  width: 28px;
+  height: 28px;
+}
+
+.symbol {
+  color: #94a3b8;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+/* Price went up or down in the last 24 hours */
+.up {
+  color: #4ade80;
+}
+
+.down {
+  color: #f87171;
+}
