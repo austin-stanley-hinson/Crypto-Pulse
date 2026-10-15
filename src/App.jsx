@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import CoinList from './CoinList';
 import SummaryStats from './SummaryStats';
+import Filters from './Filters';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -14,6 +15,9 @@ function App() {
 
   // Message to show if the request failed ("" = no error)
   const [error, setError] = useState("");
+
+  // What the user typed in the search bar
+  const [searchInput, setSearchInput] = useState("");
 
   // Get the coins once, when the page first loads
   useEffect(() => {
@@ -38,6 +42,13 @@ function App() {
     fetchCoins();
   }, []);
 
+  // Only show coins whose name or symbol includes the search text
+  // (lowercase so "btc", "BTC", and "Bitcoin" all work)
+  const search = searchInput.trim().toLowerCase();
+  const shownCoins = coins.filter((coin) =>
+    coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search)
+  );
+
   return (
     <div className="App">
       <div className="header">
@@ -51,7 +62,15 @@ function App() {
       {coins.length > 0 && (
         <>
           <SummaryStats coins={coins} />
-          <CoinList coins={coins} />
+          <Filters searchInput={searchInput} onSearchChange={setSearchInput} />
+
+          <p className="results-count">Showing {shownCoins.length} of {coins.length} coins</p>
+
+          {shownCoins.length > 0 ? (
+            <CoinList coins={shownCoins} />
+          ) : (
+            <p className="message">No coins match your search.</p>
+          )}
         </>
       )}
     </div>

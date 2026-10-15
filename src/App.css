@@ -80,6 +80,35 @@ body {
   color: #4ade80;
 }
 
+/* The search bar and filter above the list */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  background-color: #1e293b;
+  color: white;
+  outline: none;
+}
+
+.search-bar:focus {
+  border-color: #38bdf8;
+}
+
+/* "Showing 12 of 100 coins" */
+.results-count {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
 /* The list of coins, one per row */
 .table-wrapper {
   overflow-x: auto;
