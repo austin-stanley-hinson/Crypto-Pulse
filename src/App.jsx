@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import CoinList from './CoinList';
+import SummaryStats from './SummaryStats';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -47,7 +48,12 @@ function App() {
       {isLoading && <p className="message">Loading coins...</p>}
       {error && <p className="message error">{error}</p>}
 
-      {coins.length > 0 && <CoinList coins={coins} />}
+      {coins.length > 0 && (
+        <>
+          <SummaryStats coins={coins} />
+          <CoinList coins={coins} />
+        </>
+      )}
     </div>
   );
 };
