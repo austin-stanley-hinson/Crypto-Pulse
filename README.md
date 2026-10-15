@@ -2,7 +2,7 @@
 
 Submitted by: **Austin Stanley Hinson**
 
-This web app: **A data dashboard that gives a live look at the top 100 cryptocurrencies, using the CoinGecko API. Each row shows a coin's rank, icon, name, symbol, price, 24 hour price change, and market cap. Summary cards at the top show the total market cap, the average 24 hour change, how many coins went up today, and the biggest gainer. Users can search for a coin by name or symbol and filter the list by market cap size (large, mid, or small cap).**
+This web app: **A data dashboard that gives a live look at the top 100 cryptocurrencies, using the CoinGecko API. Each row shows a coin's rank, icon, name, symbol, price, 24 hour price change, and market cap. Summary cards at the top show the total market cap, the average 24 hour change, how many coins went up today, and the biggest gainer. Users can search for a coin by name or symbol and filter the list by market cap size (large, mid, or small cap) and by a price range they type in.**
 
 Time spent: **5** hours spent in total
 
@@ -31,15 +31,17 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] Multiple filters can be applied simultaneously
-  - The search bar and the market cap size filter work together, e.g. searching `eth` while showing only large cap coins
+  - The search bar, market cap size filter, and price range all work together, e.g. searching `eth` while showing only large cap coins under $5,000
 - [x] Filters use different input types
-  - The search is a text input and the size filter is a dropdown menu
-- [ ] User can enter specific bounds for filter values
+  - e.g., a text input, a dropdown or radio selection, and/or a slider
+  - The search is a text input, the size filter is a dropdown menu, and the price range uses number inputs
+- [x] User can enter specific bounds for filter values
+  - Users can type a minimum and/or maximum price, and only coins priced between them are shown
 
 The following **additional** features are implemented:
 
 * [x] A "Showing 14 of 100 coins" counter updates as the search and filter change
-* [x] A message appears when no coins match the search and filter
+* [x] A message appears when no coins match the search and filters
 * [x] The 24 hour change is green when a coin went up and red when it went down
 * [x] Prices are formatted for their size, so `$81,696.00` gets two decimal places and very small prices like `$0.00915659` keep enough decimals to be useful
 * [x] Large numbers are shortened, so a market cap shows as `$1.64T` or `$987M`
