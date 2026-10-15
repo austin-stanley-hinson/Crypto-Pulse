@@ -3,6 +3,7 @@ import './App.css'
 import CoinList from './CoinList';
 import SummaryStats from './SummaryStats';
 import Filters from './Filters';
+import getCoinSize from './coinSize';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -18,6 +19,9 @@ function App() {
 
   // What the user typed in the search bar
   const [searchInput, setSearchInput] = useState("");
+
+  // Which size of coin to show: "all", "large", "mid", or "small"
+  const [sizeFilter, setSizeFilter] = useState("all");
 
   // Get the coins once, when the page first loads
   useEffect(() => {
@@ -44,10 +48,13 @@ function App() {
 
   // Only show coins whose name or symbol includes the search text
   // (lowercase so "btc", "BTC", and "Bitcoin" all work)
+  // and that are the size picked in the filter
   const search = searchInput.trim().toLowerCase();
-  const shownCoins = coins.filter((coin) =>
-    coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search)
-  );
+  const shownCoins = coins.filter((coin) => {
+    const matchesSearch = coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search);
+    const matchesSize = sizeFilter === "all" || getCoinSize(coin.market_cap) === sizeFilter;
+    return matchesSearch && matchesSize;
+  });
 
   return (
     <div className="App">
@@ -62,14 +69,19 @@ function App() {
       {coins.length > 0 && (
         <>
           <SummaryStats coins={coins} />
-          <Filters searchInput={searchInput} onSearchChange={setSearchInput} />
+          <Filters
+            searchInput={searchInput}
+            onSearchChange={setSearchInput}
+            sizeFilter={sizeFilter}
+            onSizeChange={setSizeFilter}
+          />
 
           <p className="results-count">Showing {shownCoins.length} of {coins.length} coins</p>
 
           {shownCoins.length > 0 ? (
             <CoinList coins={shownCoins} />
           ) : (
-            <p className="message">No coins match your search.</p>
+            <p className="message">No coins match your search and filter.</p>
           )}
         </>
       )}
