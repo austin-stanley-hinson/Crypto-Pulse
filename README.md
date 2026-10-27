@@ -48,7 +48,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+[▶️ Watch the video walkthrough on Imgur](https://imgur.com/a/MrkL1G4)
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with the macOS Screenshot tool (Cmd+Shift+5) and converted to a GIF  
