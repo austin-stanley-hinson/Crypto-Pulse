@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import { formatPrice, formatBigMoney, formatPercent } from './format';
 
 // The dashboard list: one coin per row.
 // App passes in the coins to show.
+// Clicking a row opens that coin's detail page.
 const CoinList = ({ coins }) => {
+  const navigate = useNavigate();
+
   return (
     // The wrapper lets the table scroll sideways on small screens
     <div className="table-wrapper">
@@ -18,7 +22,7 @@ const CoinList = ({ coins }) => {
         </thead>
         <tbody>
           {coins.map((coin) => (
-            <tr key={coin.id}>
+            <tr key={coin.id} className="coin-row" onClick={() => navigate(`/coin/${coin.id}`)}>
               <td className="rank">{coin.market_cap_rank}</td>
               <td>
                 <div className="coin-name">

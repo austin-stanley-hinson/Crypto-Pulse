@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css'
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
+import CoinDetail from './CoinDetail';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -78,6 +79,7 @@ function App() {
               </>
             }
           />
+          <Route path="/coin/:id" element={<CoinDetail />} />
         </Routes>
       </main>
     </div>

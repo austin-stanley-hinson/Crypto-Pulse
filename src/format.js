@@ -27,3 +27,21 @@ export const formatPercent = (percent) => {
   const sign = percent > 0 ? "+" : "";
   return `${sign}${percent.toFixed(2)}%`;
 };
+
+// A number of coins, shortened, e.g. 19850000 -> "19.85M"
+export const formatSupply = (amount) => {
+  return amount.toLocaleString("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 2,
+  });
+};
+
+// A date from the API, e.g. "2009-01-03" -> "Jan 3, 2009"
+export const formatDate = (date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+};
