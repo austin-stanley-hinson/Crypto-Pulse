@@ -41,7 +41,8 @@ const About = () => {
         <p>
           Some coins, like Tether (USDT) and USD Coin (USDC), are built to always be worth $1.
           They almost never move, so they sit in the middle of the "today's moves" chart.
-          Open one from the dashboard and look at its 30 day price chart: it's nearly flat.
+          Open one from the dashboard and look at the numbers on its 30 day price chart: the line
+          looks bumpy, but the chart is zoomed way in, and the price only moves by a fraction of a cent.
         </p>
       </div>
 
