@@ -28,16 +28,17 @@ const MarketShareChart = ({ coins }) => {
         {data[0].name} alone makes up <strong>{bitcoinShare.toFixed(1)}%</strong> of the value of the top 100 coins.
         The other {coins.length - 10} coins together hold only {data[10].share.toFixed(1)}%.
       </p>
-      <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-          <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} interval={0} />
-          <YAxis stroke="#94a3b8" fontSize={12} unit="%" />
+      {/* Bars go sideways so long symbols like FIGR_HELOC have room */}
+      <ResponsiveContainer width="100%" height={320}>
+        <BarChart data={data} layout="vertical" margin={{ top: 0, right: 10, left: 0, bottom: 0 }}>
+          <XAxis type="number" stroke="#94a3b8" fontSize={12} unit="%" />
+          <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} interval={0} width={90} />
           <Tooltip
             cursor={{ fill: "#273449" }}
             contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #334155", borderRadius: 8 }}
             formatter={(value, name, item) => [`${value.toFixed(2)}% (${formatBigMoney(item.payload.marketCap)})`, "Share"]}
           />
-          <Bar dataKey="share" radius={[6, 6, 0, 0]}>
+          <Bar dataKey="share" radius={[0, 6, 6, 0]}>
             {/* The "other" bar is gray so it stands apart from the single coins */}
             {data.map((entry, index) => (
               <Cell key={entry.name} fill={index === 10 ? "#64748b" : "#38bdf8"} />
