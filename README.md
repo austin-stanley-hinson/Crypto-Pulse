@@ -4,7 +4,7 @@ Submitted by: **Austin Stanley Hinson**
 
 This web app: **A data dashboard that gives a live look at the top 100 cryptocurrencies, using the CoinGecko API. A sidebar on every page links to the dashboard and an About the Data page. The dashboard has summary cards, two charts (each top 10 coin's share of the market, and how many coins rose or fell by how much today), and a list of coins that can be searched and filtered. Clicking a coin opens its own detail page, with a unique URL, showing its description, price changes over 24 hours to 1 year, a 30 day price chart, all time high and low, supply, and more.**
 
-Time spent: **X** hours spent in total
+Time spent: **4** hours spent in total
 
 ## Required Features
 
