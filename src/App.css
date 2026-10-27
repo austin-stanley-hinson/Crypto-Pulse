@@ -395,3 +395,28 @@ body {
   color: #cbd5e1;
   font-size: 14px;
 }
+
+/* The charts on the dashboard */
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.chart-card {
+  padding: 20px;
+  background-color: #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.chart-card h3 {
+  margin-top: 0;
+}
+
+.chart-note {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}

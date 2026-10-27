@@ -1,6 +1,7 @@
 import CoinList from './CoinList';
 import SummaryStats from './SummaryStats';
 import Filters from './Filters';
+import MarketShareChart from './MarketShareChart';
 import getCoinSize from './coinSize';
 
 // The home page: summary cards, the search and filters, and the list of coins.
@@ -34,6 +35,11 @@ const Dashboard = ({
       </div>
 
       <SummaryStats coins={coins} />
+
+      <div className="charts">
+        <MarketShareChart coins={coins} />
+      </div>
+
       <Filters
         searchInput={searchInput}
         onSearchChange={onSearchChange}
