@@ -7,10 +7,93 @@ body {
 }
 
 .App {
+  display: flex;
+  min-height: 100vh;
+  color: white;
+}
+
+/* The sidebar on the left of every page */
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  width: 220px;
+  height: 100vh;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 2rem 1.25rem;
+  background-color: #1e293b;
+  border-right: 1px solid #334155;
+}
+
+.sidebar-logo {
+  display: block;
+  margin-bottom: 2rem;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-links a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.sidebar-links a:hover {
+  background-color: #273449;
+}
+
+/* The link for the page you're on */
+.sidebar-links a.active {
+  background-color: #334155;
+  color: white;
+  font-weight: bold;
+}
+
+/* The page to the right of the sidebar */
+.content {
+  flex: 1;
+  min-width: 0;
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  color: white;
+}
+
+/* On small screens the sidebar becomes a bar across the top */
+@media (max-width: 700px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-links {
+    flex-direction: row;
+  }
+
+  .content {
+    padding: 1rem;
+  }
 }
 
 .header {

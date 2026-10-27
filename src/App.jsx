@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import CoinList from './CoinList';
-import SummaryStats from './SummaryStats';
-import Filters from './Filters';
-import getCoinSize from './coinSize';
+import Sidebar from './Sidebar';
+import Dashboard from './Dashboard';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -50,52 +49,37 @@ function App() {
     fetchCoins();
   }, []);
 
-  // Only show coins whose name or symbol includes the search text
-  // (lowercase so "btc", "BTC", and "Bitcoin" all work)
-  // and that are the size picked in the filter
-  // and whose price is between the min and max (if they were typed in)
-  const search = searchInput.trim().toLowerCase();
-  const shownCoins = coins.filter((coin) => {
-    const matchesSearch = coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search);
-    const matchesSize = sizeFilter === "all" || getCoinSize(coin.market_cap) === sizeFilter;
-    const aboveMin = minPrice === "" || coin.current_price >= Number(minPrice);
-    const belowMax = maxPrice === "" || coin.current_price <= Number(maxPrice);
-    return matchesSearch && matchesSize && aboveMin && belowMax;
-  });
-
   return (
+    // The sidebar stays on the left while the page on the right changes
     <div className="App">
-      <div className="header">
-        <h1>Crypto Pulse 📈</h1>
-        <h2>How is the crypto market doing today? A live look at the top 100 coins.</h2>
-      </div>
+      <Sidebar />
 
-      {isLoading && <p className="message">Loading coins...</p>}
-      {error && <p className="message error">{error}</p>}
-
-      {coins.length > 0 && (
-        <>
-          <SummaryStats coins={coins} />
-          <Filters
-            searchInput={searchInput}
-            onSearchChange={setSearchInput}
-            sizeFilter={sizeFilter}
-            onSizeChange={setSizeFilter}
-            minPrice={minPrice}
-            onMinPriceChange={setMinPrice}
-            maxPrice={maxPrice}
-            onMaxPriceChange={setMaxPrice}
+      <main className="content">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                {isLoading && <p className="message">Loading coins...</p>}
+                {error && <p className="message error">{error}</p>}
+                {coins.length > 0 && (
+                  <Dashboard
+                    coins={coins}
+                    searchInput={searchInput}
+                    onSearchChange={setSearchInput}
+                    sizeFilter={sizeFilter}
+                    onSizeChange={setSizeFilter}
+                    minPrice={minPrice}
+                    onMinPriceChange={setMinPrice}
+                    maxPrice={maxPrice}
+                    onMaxPriceChange={setMaxPrice}
+                  />
+                )}
+              </>
+            }
           />
-
-          <p className="results-count">Showing {shownCoins.length} of {coins.length} coins</p>
-
-          {shownCoins.length > 0 ? (
-            <CoinList coins={shownCoins} />
-          ) : (
-            <p className="message">No coins match your search and filters.</p>
-          )}
-        </>
-      )}
+        </Routes>
+      </main>
     </div>
   );
 };
