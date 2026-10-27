@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css'
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
@@ -27,6 +27,13 @@ function App() {
   // The lowest and highest price to show, as typed ("" = no limit)
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+
+  // Start at the top of the page when going to a new page,
+  // e.g. when opening a coin from far down the list
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // Get the coins once, when the page first loads
   useEffect(() => {
