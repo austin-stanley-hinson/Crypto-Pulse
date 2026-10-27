@@ -1,52 +1,48 @@
-# Web Development Project 5 - *Crypto Pulse*
+# Web Development Project 6 - *Crypto Pulse*
 
 Submitted by: **Austin Stanley Hinson**
 
-This web app: **A data dashboard that gives a live look at the top 100 cryptocurrencies, using the CoinGecko API. Each row shows a coin's rank, icon, name, symbol, price, 24 hour price change, and market cap. Summary cards at the top show the total market cap, the average 24 hour change, how many coins went up today, and the biggest gainer. Users can search for a coin by name or symbol and filter the list by market cap size (large, mid, or small cap) and by a price range they type in.**
+This web app: **A data dashboard that gives a live look at the top 100 cryptocurrencies, using the CoinGecko API. A sidebar on every page links to the dashboard and an About the Data page. The dashboard has summary cards, two charts (each top 10 coin's share of the market, and how many coins rose or fell by how much today), and a list of coins that can be searched and filtered. Clicking a coin opens its own detail page, with a unique URL, showing its description, price changes over 24 hours to 1 year, a 30 day price chart, all time high and low, supply, and more.**
 
-Time spent: **5** hours spent in total
+Time spent: **X** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **The site has a dashboard displaying a list of data fetched using an API call**
-  - The dashboard should display at least 10 unique items, one per row
-  - The dashboard includes at least two features in each row
-- [x] **`useEffect` React hook and `async`/`await` are used**
-- [x] **The app dashboard includes at least three summary statistics about the data**
-  - The app dashboard includes at least three summary statistics about the data, such as:
-    - Total market cap of all 100 coins
-    - Average 24 hour price change
-    - Number of coins that went up in price today
-    - The top gainer of the day
-- [x] **A search bar allows the user to search for an item in the fetched data**
-  - The search bar **correctly** filters items in the list, only displaying items matching the search query
-  - The list of results dynamically updates as the user types into the search bar
-- [x] **An additional filter allows the user to restrict displayed items by specified categories**
-  - The filter restricts items in the list using a **different attribute** than the search bar
-  - The filter **correctly** filters items in the list, only displaying items matching the filter attribute in the dashboard
-  - The dashboard list dynamically updates as the user adjusts the filter
+- [x] **Clicking on an item in the list view displays more details about it**
+  - Clicking on an item in the dashboard list navigates to a detail view for that item
+  - Detail view includes extra information about the item not included in the dashboard view
+    - The coin's description, price change over 7 days, 30 days, and 1 year, a 30 day price chart, 24 hour high and low, trading volume, fully diluted value, all time high and low with their dates, circulating, total, and max supply, launch date, hashing algorithm, website, and categories
+  - The same sidebar is displayed in detail view as in dashboard view
+- [x] **Each detail view of an item has a direct, unique URL link to that item's detail view page**
+  - e.g. `/coin/bitcoin`, `/coin/ethereum`, `/coin/tether`
+- [x] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
+  - At least two charts should be incorporated into the dashboard view of the site
+  - Each chart should describe a different aspect of the dataset
+    - **Who owns the market?** A bar chart of each top 10 coin's share of the top 100's total market cap, plus one bar for the other 90. It shows how much bigger Bitcoin is than everything else.
+    - **How much did coins move today?** A bar chart of how many coins went up or down by how much in the last 24 hours. It updates with the search and filters, so you can compare how much large and small coins move.
 
 The following **optional** features are implemented:
 
-- [x] Multiple filters can be applied simultaneously
-  - The search bar, market cap size filter, and price range all work together, e.g. searching `eth` while showing only large cap coins under $5,000
-- [x] Filters use different input types
-  - e.g., a text input, a dropdown or radio selection, and/or a slider
-  - The search is a text input, the size filter is a dropdown menu, and the price range uses number inputs
-- [x] User can enter specific bounds for filter values
-  - Users can type a minimum and/or maximum price, and only coins priced between them are shown
+- [x] The site's customized dashboard contains more content that explains what is interesting about the data
+  - Each chart has a note under its title that changes with the data, e.g. "BTC alone makes up 59.3% of the value of the top 100 coins" and "Most coins went up together today"
+  - An **About the Data** page explains market cap, the size groups, why Bitcoin matters so much, and stablecoins, and suggests filters to try
+- [x] The site allows users to toggle between different data visualizations
+  - Buttons above the charts show and hide each chart
 
 The following **additional** features are implemented:
 
-* [x] A "Showing 14 of 100 coins" counter updates as the search and filter change
-* [x] A message appears when no coins match the search and filters
-* [x] The 24 hour change is green when a coin went up and red when it went down
-* [x] Prices are formatted for their size, so `$81,696.00` gets two decimal places and very small prices like `$0.00915659` keep enough decimals to be useful
-* [x] Large numbers are shortened, so a market cap shows as `$1.64T` or `$987M`
-* [x] Search ignores uppercase and lowercase, so `btc`, `BTC`, and `Bitcoin` all find Bitcoin
-* [x] The API key is kept in a `.env.local` file so it isn't committed to GitHub
+* [x] A 30 day price chart on each coin's detail page, green if the price went up over the month and red if it went down
+* [x] The filters are kept when you open a coin and come back to the dashboard
+* [x] The sidebar highlights the page you're on, and turns into a bar across the top on small screens
+* [x] The page scrolls back to the top when you open a coin
+* [x] Features from Project 5:
+  * A search bar, a market cap size filter (large, mid, or small cap), and a min and max price, which all work together
+  * Summary cards for the total market cap, the average 24 hour change, how many coins went up today, and the biggest gainer
+  * A "Showing 14 of 100 coins" counter and a message when no coins match
+  * Green and red 24 hour changes, prices formatted for their size, and big numbers shortened to `$1.64T` or `$987M`
+  * The API key is kept in a `.env.local` file so it isn't committed to GitHub
 
 ## Video Walkthrough
 
@@ -63,7 +59,7 @@ GIF created with the macOS Screenshot tool (Cmd+Shift+5) and converted to a GIF
 
 ## Notes
 
-One challenge was showing prices in a readable way. Bitcoin is worth tens of thousands of dollars, but some coins are worth a tiny fraction of a cent, so rounding every price to two decimal places would show many coins as `$0.00`. The app gives prices under $1 more decimal places, and shortens big numbers like market caps into `$1.64T` or `$987M`. Another challenge was choosing categories for the filter. CoinGecko doesn't give each coin a simple category, so I grouped coins by market cap into large (over $10 billion), mid ($1 billion to $10 billion), and small (under $1 billion), which splits the top 100 coins into groups that are all worth looking at. Making the search and filter work together was easier than expected, since one `.filter()` can check both at once.
+One challenge was keeping the filters when moving between pages. The search and filter values used to live inside the dashboard, so they would reset every time a coin was opened. Moving them up into `App`, which wraps every page along with the sidebar, keeps them in place when the user comes back. Another challenge was choosing charts that tell a story instead of just repeating the list. A chart of prices wouldn't say much, since prices range from fractions of a cent to tens of thousands of dollars, but market share and the spread of today's changes both show patterns that are hard to see in a table: Bitcoin holds a huge share of the market, and coins tend to rise and fall together. The detail page also needed its own API calls, since the list doesn't include things like the description or all time high, and each detail page has to load on its own when someone opens its URL directly.
 
 ## License
 
