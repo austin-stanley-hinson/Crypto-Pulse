@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
+import PriceHistoryChart from './PriceHistoryChart';
 import { formatPrice, formatBigMoney, formatPercent, formatSupply, formatDate } from './format';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
@@ -84,6 +85,8 @@ const CoinDetail = () => {
           </div>
         ))}
       </div>
+
+      <PriceHistoryChart id={id} />
 
       <div className="detail-sections">
         <div className="detail-section">
