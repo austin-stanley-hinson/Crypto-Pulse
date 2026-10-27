@@ -8,6 +8,7 @@ const Sidebar = () => {
       <div className="sidebar-links">
         {/* "end" so Dashboard is only highlighted on the home page */}
         <NavLink to="/" end>🏠 Dashboard</NavLink>
+        <NavLink to="/about">📚 About the Data</NavLink>
       </div>
     </nav>
   );

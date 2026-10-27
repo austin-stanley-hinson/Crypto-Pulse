@@ -453,3 +453,35 @@ body {
   background-color: #0c4a6e;
   color: white;
 }
+
+/* The About the Data page */
+.about-section {
+  margin-bottom: 16px;
+  padding: 20px;
+  background-color: #1e293b;
+  border-radius: 16px;
+}
+
+.about-section h3 {
+  margin-top: 0;
+}
+
+.about-section p,
+.about-section li {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.about-section li {
+  margin-bottom: 6px;
+}
+
+.about-source {
+  color: #94a3b8;
+  font-size: 14px;
+  text-align: center;
+}
+
+.about-source a {
+  color: #38bdf8;
+}
