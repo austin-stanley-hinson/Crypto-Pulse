@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import CoinList from './CoinList';
 import SummaryStats from './SummaryStats';
 import Filters from './Filters';
@@ -15,6 +16,10 @@ const Dashboard = ({
   minPrice, onMinPriceChange,
   maxPrice, onMaxPriceChange,
 }) => {
+  // Which charts are shown (the user can turn each one on and off)
+  const [showShareChart, setShowShareChart] = useState(true);
+  const [showChangeChart, setShowChangeChart] = useState(true);
+
   // Only show coins whose name or symbol includes the search text
   // (lowercase so "btc", "BTC", and "Bitcoin" all work)
   // and that are the size picked in the filter
@@ -37,10 +42,28 @@ const Dashboard = ({
 
       <SummaryStats coins={coins} />
 
-      <div className="charts">
-        <MarketShareChart coins={coins} />
-        <ChangeChart coins={shownCoins} />
+      <div className="chart-toggles">
+        <span>Charts:</span>
+        <button
+          className={showShareChart ? "toggle on" : "toggle"}
+          onClick={() => setShowShareChart(!showShareChart)}
+        >
+          🥧 Market share
+        </button>
+        <button
+          className={showChangeChart ? "toggle on" : "toggle"}
+          onClick={() => setShowChangeChart(!showChangeChart)}
+        >
+          🎢 Today's moves
+        </button>
       </div>
+
+      {(showShareChart || showChangeChart) && (
+        <div className="charts">
+          {showShareChart && <MarketShareChart coins={coins} />}
+          {showChangeChart && <ChangeChart coins={shownCoins} />}
+        </div>
+      )}
 
       <Filters
         searchInput={searchInput}

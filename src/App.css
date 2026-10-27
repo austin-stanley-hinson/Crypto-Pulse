@@ -421,3 +421,35 @@ body {
   font-size: 14px;
   line-height: 1.5;
 }
+
+/* The buttons that show and hide each chart */
+.chart-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.toggle {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 2px solid #334155;
+  border-radius: 999px;
+  background-color: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  border-color: #38bdf8;
+}
+
+/* A chart that is showing */
+.toggle.on {
+  border-color: #38bdf8;
+  background-color: #0c4a6e;
+  color: white;
+}
